@@ -16,7 +16,8 @@ rl.on("line",function(line){
 		if(!lines) process.exit();
 	}
 	else{
-		checkLine(line).then(()=>{
+		checkLine(line).then((longestWord)=>{
+			console.log(longestWord);
 			if(lines-- === 1) process.exit();
 		});
 	}
@@ -30,19 +31,13 @@ var checkLine = exports.checkLine = (letters)=>{
 			filteredWords = words.filter(function(word){
 				return !re.test(word);
 			})
-			// console.log(Math.max(...filteredWords))
-			// console.log(filteredWords);
-			var maxLength = 0;
 			var longestWord = '';
 			filteredWords.forEach(function(el){
-				if(el === 'deedeed') console.log(el);
 				if(longestWord.length < el.length){
 					longestWord = el;
-					// console.log(el)
 				}
-
 			})
-			console.log(longestWord)
+			return longestWord;
 		}
 	)
 }
